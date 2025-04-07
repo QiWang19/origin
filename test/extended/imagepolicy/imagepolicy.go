@@ -35,16 +35,12 @@ const (
 var _ = g.Describe("[sig-imagepolicy][OCPFeatureGate:SigstoreImageVerification][Serial]", g.Ordered, func() {
 	defer g.GinkgoRecover()
 	var (
-		oc           = exutil.NewCLIWithoutNamespace("cluster-image-policy")
-		tctx         = context.Background()
-		cli          = exutil.NewCLIWithPodSecurityLevel("verifysigstore-e2e", admissionapi.LevelBaseline)
-		clif         = cli.KubeFramework()
-		imgpolicyCli = exutil.NewCLIWithPodSecurityLevel("verifysigstore-imagepolicy-e2e", admissionapi.LevelBaseline)
-		// imgpolicyClif      = imgpolicyCli.KubeFramework()
-
-		// imgpolicyCli  *exutil.CLI
-		imgpolicyClif *e2e.Framework
-
+		oc                 = exutil.NewCLIWithoutNamespace("cluster-image-policy")
+		tctx               = context.Background()
+		cli                = exutil.NewCLIWithPodSecurityLevel("verifysigstore-e2e", admissionapi.LevelBaseline)
+		clif               = cli.KubeFramework()
+		imgpolicyCli       = exutil.NewCLIWithPodSecurityLevel("verifysigstore-imagepolicy-e2e", admissionapi.LevelBaseline)
+		imgpolicyClif      = imgpolicyCli.KubeFramework()
 		imagePolicyBaseDir = exutil.FixturePath("testdata", "imagepolicy")
 		// invalidPublicKeyClusterImagePolicyFixture = filepath.Join(imagePolicyBaseDir, "invalid-public-key-cluster-image-policy.yaml")
 		publiKeyRekorClusterImagePolicyFixture = filepath.Join(imagePolicyBaseDir, "public-key-rekor-cluster-image-policy.yaml")
@@ -65,13 +61,6 @@ var _ = g.Describe("[sig-imagepolicy][OCPFeatureGate:SigstoreImageVerification][
 		// imgpolicyCli = exutil.NewCLIWithPodSecurityLevel("verifysigstore-imagepolicy-e2e", admissionapi.LevelBaseline)
 		imgpolicyClif = imgpolicyCli.KubeFramework()
 
-		createClusterImagePolicy(oc, publiKeyRekorClusterImagePolicyFixture)
-		// g.DeferCleanup(deleteClusterImagePolicy, oc, invalidPublicKeyClusterImagePolicyFixture)
-
-		createImagePolicy(oc, invalidPublicKeyImagePolicyFixture, imgpolicyCli.Namespace())
-		// createImagePolicy(oc, invalidPublicKeyImagePolicyFixture, clif.Namespace.Name)
-		// createImagePolicy(oc, publiKeyRekorImagePolicyFixture, clif.Namespace.Name)
-		// createImagePolicy(oc, publiKeyRekorImagePolicyFixture, imgpolicyClif.Namespace.Name)
 		time.Sleep(10 * time.Second)
 		machineconfighelper.WaitForConfigAndPoolComplete(oc, workerPool, registriesWorkerPoolMachineConfig)
 		machineconfighelper.WaitForConfigAndPoolComplete(oc, masterPool, registriesMasterPoolMachineConfig)
@@ -79,16 +68,16 @@ var _ = g.Describe("[sig-imagepolicy][OCPFeatureGate:SigstoreImageVerification][
 	})
 
 	g.It("Should fail clusterimagepolicy signature validation root of trust does not match the identity in the signature", func() {
-		// createClusterImagePolicy(oc, publiKeyRekorClusterImagePolicyFixture)
+		createClusterImagePolicy(oc, publiKeyRekorClusterImagePolicyFixture)
 		// g.DeferCleanup(deleteClusterImagePolicy, oc, invalidPublicKeyClusterImagePolicyFixture)
 
-		// createImagePolicy(oc, invalidPublicKeyImagePolicyFixture, imgpolicyClif.Namespace.Name)
-		// createImagePolicy(oc, invalidPublicKeyImagePolicyFixture, clif.Namespace.Name)
-		// createImagePolicy(oc, publiKeyRekorImagePolicyFixture, clif.Namespace.Name)
-		// createImagePolicy(oc, publiKeyRekorImagePolicyFixture, imgpolicyClif.Namespace.Name)
-		// time.Sleep(10 * time.Second)
-		// machineconfighelper.WaitForConfigAndPoolComplete(oc, workerPool, registriesWorkerPoolMachineConfig)
-		// machineconfighelper.WaitForConfigAndPoolComplete(oc, masterPool, registriesMasterPoolMachineConfig)
+		createImagePolicy(oc, invalidPublicKeyImagePolicyFixture, imgpolicyClif.Namespace.Name)
+		createImagePolicy(oc, invalidPublicKeyImagePolicyFixture, clif.Namespace.Name)
+		createImagePolicy(oc, publiKeyRekorImagePolicyFixture, clif.Namespace.Name)
+		createImagePolicy(oc, publiKeyRekorImagePolicyFixture, imgpolicyClif.Namespace.Name)
+		time.Sleep(10 * time.Second)
+		machineconfighelper.WaitForConfigAndPoolComplete(oc, workerPool, registriesWorkerPoolMachineConfig)
+		machineconfighelper.WaitForConfigAndPoolComplete(oc, masterPool, registriesMasterPoolMachineConfig)
 
 		pod, err := launchTestPod(tctx, clif, testPodName, failedTestReleaseImageScope)
 		o.Expect(err).NotTo(o.HaveOccurred())
