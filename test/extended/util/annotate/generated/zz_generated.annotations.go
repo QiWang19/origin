@@ -1171,6 +1171,14 @@ var Annotations = map[string]string{
 
 	"[sig-etcd][apigroup:config.openshift.io] Ensure etcd health and quorum in HighlyAvailableArbiterMode should have all etcd pods running and quorum met": " [Suite:openshift/conformance/parallel]",
 
+	"[sig-imagepolicy][OCPFeatureGate:SigstoreImageVerificationPKI][Serial] Should fail clusterimagepolicy signature validation root of trust the PKI signature does not exist": " [Suite:openshift/conformance/serial]",
+
+	"[sig-imagepolicy][OCPFeatureGate:SigstoreImageVerificationPKI][Serial] Should fail imagepolicy PKI signature validation root of trust does not match the identity in the signature": " [Suite:openshift/conformance/serial]",
+
+	"[sig-imagepolicy][OCPFeatureGate:SigstoreImageVerificationPKI][Serial] Should pass clusterimagepolicy PKI signature validation with signed image": " [Suite:openshift/conformance/serial]",
+
+	"[sig-imagepolicy][OCPFeatureGate:SigstoreImageVerificationPKI][Serial] Should pass imagepolicy PKI signature validation with signed image": " [Suite:openshift/conformance/serial]",
+
 	"[sig-imagepolicy][OCPFeatureGate:SigstoreImageVerification][Serial] Should fail clusterimagepolicy signature validation root of trust does not match the identity in the signature": " [Suite:openshift/conformance/serial]",
 
 	"[sig-imagepolicy][OCPFeatureGate:SigstoreImageVerification][Serial] Should fail clusterimagepolicy signature validation when scope in allowedRegistries list does not skip signature verification": " [Suite:openshift/conformance/serial]",

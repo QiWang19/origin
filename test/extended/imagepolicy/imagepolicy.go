@@ -22,6 +22,8 @@ import (
 const (
 	testReleaseImageScope             = "quay.io/openshift-release-dev/ocp-release@sha256:fbad931c725b2e5b937b295b58345334322bdabb0b67da1c800a53686d7397da"
 	testReferenceImageScope           = "quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:4db234f37ae6712e2f7ed8d13f7fb49971c173d0e4f74613d0121672fa2e01f5"
+	testPKISignedImageScopeBusybox    = "quay.io/qiwanredhat/busybox-byo"
+	testPKISignedImageScopeBYO        = "quay.io/qiwanredhat/byo"
 	registriesWorkerPoolMachineConfig = "99-worker-generated-registries"
 	registriesMasterPoolMachineConfig = "99-master-generated-registries"
 	testPodName                       = "signature-validation-test-pod"

@@ -345,8 +345,11 @@
 // test/extended/testdata/image_ecosystem/perl-hotdeploy/index.pl
 // test/extended/testdata/image_ecosystem/perl-hotdeploy/lib/My/Test.pm
 // test/extended/testdata/image_ecosystem/perl-hotdeploy/perl.json
+// test/extended/testdata/imagepolicy/invalid-pki-image-policy.yaml
 // test/extended/testdata/imagepolicy/invalid-public-key-cluster-image-policy.yaml
 // test/extended/testdata/imagepolicy/invalid-public-key-image-policy.yaml
+// test/extended/testdata/imagepolicy/pki-cluster-image-policy.yaml
+// test/extended/testdata/imagepolicy/pki-image-policy.yaml
 // test/extended/testdata/imagepolicy/public-key-rekor-cluster-image-policy.yaml
 // test/extended/testdata/imagepolicy/public-key-rekor-image-policy.yaml
 // test/extended/testdata/ipsec/nmstate.yaml
@@ -45754,6 +45757,38 @@ func testExtendedTestdataImage_ecosystemPerlHotdeployPerlJson() (*asset, error) 
 	return a, nil
 }
 
+var _testExtendedTestdataImagepolicyInvalidPkiImagePolicyYaml = []byte(`apiVersion: config.openshift.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: invalid-pki-image-policy 
+spec:
+  scopes:
+  - quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:4db234f37ae6712e2f7ed8d13f7fb49971c173d0e4f74613d0121672fa2e01f5
+  policy:
+    rootOfTrust:
+      policyType: PKI
+      pki:
+        caRootsData: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZ2ekNDQTZlZ0F3SUJBZ0lVWm5IM0lUeVlRTUFwNmx2TlljMGZqUnp6dUJjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2JqRUxNQWtHQTFVRUJoTUNSVk14RVRBUEJnTlZCQWNNQ0ZaaGJHVnVZMmxoTVFzd0NRWURWUVFLREFKSgpWREVSTUE4R0ExVUVDd3dJVTJWamRYSnBkSGt4TERBcUJnTlZCQU1NSTB4cGJuVjRaWEpoSUZKdmIzUWdRMlZ5CmRHbG1hV05oZEdVZ1FYVjBhRzl5YVhSNU1DQVhEVEkwTURrek1ERTJNak0xTjFvWUR6SXdOVEl3TWpFMU1UWXkKTXpVM1dqQnVNUXN3Q1FZRFZRUUdFd0pGVXpFUk1BOEdBMVVFQnd3SVZtRnNaVzVqYVdFeEN6QUpCZ05WQkFvTQpBa2xVTVJFd0R3WURWUVFMREFoVFpXTjFjbWwwZVRFc01Db0dBMVVFQXd3alRHbHVkWGhsY21FZ1VtOXZkQ0JEClpYSjBhV1pwWTJGMFpTQkJkWFJvYjNKcGRIa3dnZ0lpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElDRHdBd2dnSUsKQW9JQ0FRQ3k4dkd1aDYrMjd4cXRzQU5KVU1JZUdhWC9yang1aElnaC9lT2N4WmMyL2F6VEIvekhud2paWDdxbgpDbzN6YVlaYVMzaWJPb3VTMXlQdjJHM05lUlB3ZkdIbjJrY1IzUU03aDRCZFl4WjNTUi9WaW9hV3BWeW1MQ20yCi9WMmdRV01XS3J0ZFlmT1hCdmlxaGhEOU9JeHJMU09xamFjOFQvaWNRY2ZOK2RLa3RLeUdsWTd2SkxLTzl3MngKSWRwT1RhMklEdVlwNUROUVY2dnk5c0RGZ2xQL2lhZnZjRGtMR1VocnNvcDhMZU5jZWpwbXBGQlBSd0pLWGdhbgo1c3ByeTZHZ0NwTk5KdUIvSHFndGgwZkdQak1FWThiUHVWT0NlaG5SeGUwOTRVMDFzR3JvYmtrYm5NK1N4dW1BCm9Md2sxLy9qQzFLM0hhS2prSU9NTUh4RXpxWXgwUTRSYWx2UFdoZDZvL0tQNUNzK3JkNStFd1NlRnV2YmFJckYKc0VQWkJQcEgwVURMUjB5aVFOazJqNExWYlYxeGRQN3RYOEt0VXZGOCtFM0dtNVN3bkNvZE5iZm5BVXhORjRSSwo0bERxR2liVVVJNUI1U25pSjVZTVZlVEpTYzFKbzlnVGFLYTlsUm5pTWl0WTlGanpqUWpERjR5R25oTlBtbUtHCnpJdlZPWEloUXBjdzNVaEVNbUR6NnAxd3Izd01EdGp1Zm9heGFUam9BdXhVelN3d0ZxeHp6Y0plblFpSG9GZVEKQjZjSjVSYXlpemFkbGtxQm5IQWtyekFCMGFNOVc4emg1QWhJY25PNmdmR0JhT0ZvbStJNUh1eTNUeVo5RmpUbgp2bHhWTTV0eFBWNVZzQlBNSzk2aEY2bW5XZUtOZy8yMnFZMFgrd284VDMzRzRMdldJd0lEQVFBQm8xTXdVVEFkCkJnTlZIUTRFRmdRVUQrYkZwTUFPaE5TcHRkUW8rTlpsZStZZDFMNHdId1lEVlIwakJCZ3dGb0FVRCtiRnBNQU8KaE5TcHRkUW8rTlpsZStZZDFMNHdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBZ0VBbUUyMWUySDUxdm9sRkkwQ2JvRGFrYjVUOVZMa0R6TGdteEgyaVpQQkpyblFCRmFQVEVhUW5NOTNwRHErCmN6ZmM3K1dKTCs2VFV5VVlGT2cycnVlSy9LV0MzQVFZVXJzYitpM0JETlpWdjc0ZjN3TGlkbXFFTGN5akhPOG0KN3lvR0lnZUc4a3NNWVBDelBmdXVGSFlORGl2MTFicm1iZGhkR0didlFNYmF5TFl2aEI1NDNKNXNUaVVzcjNpdgpTaEt2bXIva3JBYmRqNlpLMm02dXMrcEZrdGpqYmlySFZxajV0RStSdkVDOW9IU25neUNSQ0tKRXVFRHQrZ1VLCmdtU0ZoMStBRkpkaldxWXFuWDdrUHU2TjR4NEtvSDcyT1VrZDdOSHB6a0c1N1VNMGlWUThqQ0FjbGtaeHJwbmcKSENEK2RZMEpuSWxGK0xKN3FHZ21yTlFRdlRaMTFoV3lWN2ZSSGNDUHd1cVQwa0pDL3lqV1dYRWFmc01XVFBsNwoyenJRZzVZVzB6YmNXZlJ6bzF1Y3gwdGY0N3VuUmpWcWphWGp5eXprZ2tIcnFaSDkzOVNyQXk5ZTJTRlpVcWR5CnFJWHdHbVprdHpMOERVKzhaSDQ3UitDSXdjdjU5bDRXeTg4OWZVcmprNEtnZzQ1SWhxblA1Tk1nMlo4YXl0VUgKMFp3bzBpSnh1Q2UwdFFUZFNNdllDMFBvV3NFeVI0S1VMRVU4M0dmQ2JHWlFHOGhPRkFQSFhWMENwTTAyNSs5WQpMOElURlArTnc5TWVpdzRldHc1OUNUQVBDYzdsNFp2d3IxSzJaVEJtVkd4cnFkYXNpcXBJMHV0RzY5YUl0c1BpCis5VjhTU2RlN0Q1aU1WLzN6OUxEeEEvb0xvcU5HRmNEMFRTUjUrb2JlcUp6bDQwPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        pkiCertificateSubject:
+          email: team-a@redhat.com
+    signedIdentity:
+      matchPolicy: MatchRepository`)
+
+func testExtendedTestdataImagepolicyInvalidPkiImagePolicyYamlBytes() ([]byte, error) {
+	return _testExtendedTestdataImagepolicyInvalidPkiImagePolicyYaml, nil
+}
+
+func testExtendedTestdataImagepolicyInvalidPkiImagePolicyYaml() (*asset, error) {
+	bytes, err := testExtendedTestdataImagepolicyInvalidPkiImagePolicyYamlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "test/extended/testdata/imagepolicy/invalid-pki-image-policy.yaml", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
 var _testExtendedTestdataImagepolicyInvalidPublicKeyClusterImagePolicyYaml = []byte(`apiVersion: config.openshift.io/v1alpha1
 kind: ClusterImagePolicy 
 metadata:
@@ -45808,6 +45843,71 @@ func testExtendedTestdataImagepolicyInvalidPublicKeyImagePolicyYaml() (*asset, e
 	}
 
 	info := bindataFileInfo{name: "test/extended/testdata/imagepolicy/invalid-public-key-image-policy.yaml", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var _testExtendedTestdataImagepolicyPkiClusterImagePolicyYaml = []byte(`apiVersion: config.openshift.io/v1alpha1
+kind: ClusterImagePolicy
+metadata:
+  name: pki-cluster-image-policy 
+spec:
+  scopes:
+  - quay.io/qiwanredhat/busybox-byo
+  - quay.io/openshift-release-dev/ocp-release@sha256:fbad931c725b2e5b937b295b58345334322bdabb0b67da1c800a53686d7397da
+  policy:
+    rootOfTrust:
+      policyType: PKI
+      pki:
+        caRootsData: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZ2ekNDQTZlZ0F3SUJBZ0lVWm5IM0lUeVlRTUFwNmx2TlljMGZqUnp6dUJjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2JqRUxNQWtHQTFVRUJoTUNSVk14RVRBUEJnTlZCQWNNQ0ZaaGJHVnVZMmxoTVFzd0NRWURWUVFLREFKSgpWREVSTUE4R0ExVUVDd3dJVTJWamRYSnBkSGt4TERBcUJnTlZCQU1NSTB4cGJuVjRaWEpoSUZKdmIzUWdRMlZ5CmRHbG1hV05oZEdVZ1FYVjBhRzl5YVhSNU1DQVhEVEkwTURrek1ERTJNak0xTjFvWUR6SXdOVEl3TWpFMU1UWXkKTXpVM1dqQnVNUXN3Q1FZRFZRUUdFd0pGVXpFUk1BOEdBMVVFQnd3SVZtRnNaVzVqYVdFeEN6QUpCZ05WQkFvTQpBa2xVTVJFd0R3WURWUVFMREFoVFpXTjFjbWwwZVRFc01Db0dBMVVFQXd3alRHbHVkWGhsY21FZ1VtOXZkQ0JEClpYSjBhV1pwWTJGMFpTQkJkWFJvYjNKcGRIa3dnZ0lpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElDRHdBd2dnSUsKQW9JQ0FRQ3k4dkd1aDYrMjd4cXRzQU5KVU1JZUdhWC9yang1aElnaC9lT2N4WmMyL2F6VEIvekhud2paWDdxbgpDbzN6YVlaYVMzaWJPb3VTMXlQdjJHM05lUlB3ZkdIbjJrY1IzUU03aDRCZFl4WjNTUi9WaW9hV3BWeW1MQ20yCi9WMmdRV01XS3J0ZFlmT1hCdmlxaGhEOU9JeHJMU09xamFjOFQvaWNRY2ZOK2RLa3RLeUdsWTd2SkxLTzl3MngKSWRwT1RhMklEdVlwNUROUVY2dnk5c0RGZ2xQL2lhZnZjRGtMR1VocnNvcDhMZU5jZWpwbXBGQlBSd0pLWGdhbgo1c3ByeTZHZ0NwTk5KdUIvSHFndGgwZkdQak1FWThiUHVWT0NlaG5SeGUwOTRVMDFzR3JvYmtrYm5NK1N4dW1BCm9Md2sxLy9qQzFLM0hhS2prSU9NTUh4RXpxWXgwUTRSYWx2UFdoZDZvL0tQNUNzK3JkNStFd1NlRnV2YmFJckYKc0VQWkJQcEgwVURMUjB5aVFOazJqNExWYlYxeGRQN3RYOEt0VXZGOCtFM0dtNVN3bkNvZE5iZm5BVXhORjRSSwo0bERxR2liVVVJNUI1U25pSjVZTVZlVEpTYzFKbzlnVGFLYTlsUm5pTWl0WTlGanpqUWpERjR5R25oTlBtbUtHCnpJdlZPWEloUXBjdzNVaEVNbUR6NnAxd3Izd01EdGp1Zm9heGFUam9BdXhVelN3d0ZxeHp6Y0plblFpSG9GZVEKQjZjSjVSYXlpemFkbGtxQm5IQWtyekFCMGFNOVc4emg1QWhJY25PNmdmR0JhT0ZvbStJNUh1eTNUeVo5RmpUbgp2bHhWTTV0eFBWNVZzQlBNSzk2aEY2bW5XZUtOZy8yMnFZMFgrd284VDMzRzRMdldJd0lEQVFBQm8xTXdVVEFkCkJnTlZIUTRFRmdRVUQrYkZwTUFPaE5TcHRkUW8rTlpsZStZZDFMNHdId1lEVlIwakJCZ3dGb0FVRCtiRnBNQU8KaE5TcHRkUW8rTlpsZStZZDFMNHdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBZ0VBbUUyMWUySDUxdm9sRkkwQ2JvRGFrYjVUOVZMa0R6TGdteEgyaVpQQkpyblFCRmFQVEVhUW5NOTNwRHErCmN6ZmM3K1dKTCs2VFV5VVlGT2cycnVlSy9LV0MzQVFZVXJzYitpM0JETlpWdjc0ZjN3TGlkbXFFTGN5akhPOG0KN3lvR0lnZUc4a3NNWVBDelBmdXVGSFlORGl2MTFicm1iZGhkR0didlFNYmF5TFl2aEI1NDNKNXNUaVVzcjNpdgpTaEt2bXIva3JBYmRqNlpLMm02dXMrcEZrdGpqYmlySFZxajV0RStSdkVDOW9IU25neUNSQ0tKRXVFRHQrZ1VLCmdtU0ZoMStBRkpkaldxWXFuWDdrUHU2TjR4NEtvSDcyT1VrZDdOSHB6a0c1N1VNMGlWUThqQ0FjbGtaeHJwbmcKSENEK2RZMEpuSWxGK0xKN3FHZ21yTlFRdlRaMTFoV3lWN2ZSSGNDUHd1cVQwa0pDL3lqV1dYRWFmc01XVFBsNwoyenJRZzVZVzB6YmNXZlJ6bzF1Y3gwdGY0N3VuUmpWcWphWGp5eXprZ2tIcnFaSDkzOVNyQXk5ZTJTRlpVcWR5CnFJWHdHbVprdHpMOERVKzhaSDQ3UitDSXdjdjU5bDRXeTg4OWZVcmprNEtnZzQ1SWhxblA1Tk1nMlo4YXl0VUgKMFp3bzBpSnh1Q2UwdFFUZFNNdllDMFBvV3NFeVI0S1VMRVU4M0dmQ2JHWlFHOGhPRkFQSFhWMENwTTAyNSs5WQpMOElURlArTnc5TWVpdzRldHc1OUNUQVBDYzdsNFp2d3IxSzJaVEJtVkd4cnFkYXNpcXBJMHV0RzY5YUl0c1BpCis5VjhTU2RlN0Q1aU1WLzN6OUxEeEEvb0xvcU5HRmNEMFRTUjUrb2JlcUp6bDQwPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        pkiCertificateSubject:
+          email: qiwan@redhat.com
+    signedIdentity:
+      matchPolicy: MatchRepository`)
+
+func testExtendedTestdataImagepolicyPkiClusterImagePolicyYamlBytes() ([]byte, error) {
+	return _testExtendedTestdataImagepolicyPkiClusterImagePolicyYaml, nil
+}
+
+func testExtendedTestdataImagepolicyPkiClusterImagePolicyYaml() (*asset, error) {
+	bytes, err := testExtendedTestdataImagepolicyPkiClusterImagePolicyYamlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "test/extended/testdata/imagepolicy/pki-cluster-image-policy.yaml", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
+	a := &asset{bytes: bytes, info: info}
+	return a, nil
+}
+
+var _testExtendedTestdataImagepolicyPkiImagePolicyYaml = []byte(`apiVersion: config.openshift.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: pki-image-policy 
+spec:
+  scopes:
+  - quay.io/qiwanredhat/byo
+  policy:
+    rootOfTrust:
+      policyType: PKI
+      pki:
+        caRootsData: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZ2ekNDQTZlZ0F3SUJBZ0lVWm5IM0lUeVlRTUFwNmx2TlljMGZqUnp6dUJjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2JqRUxNQWtHQTFVRUJoTUNSVk14RVRBUEJnTlZCQWNNQ0ZaaGJHVnVZMmxoTVFzd0NRWURWUVFLREFKSgpWREVSTUE4R0ExVUVDd3dJVTJWamRYSnBkSGt4TERBcUJnTlZCQU1NSTB4cGJuVjRaWEpoSUZKdmIzUWdRMlZ5CmRHbG1hV05oZEdVZ1FYVjBhRzl5YVhSNU1DQVhEVEkwTURrek1ERTJNak0xTjFvWUR6SXdOVEl3TWpFMU1UWXkKTXpVM1dqQnVNUXN3Q1FZRFZRUUdFd0pGVXpFUk1BOEdBMVVFQnd3SVZtRnNaVzVqYVdFeEN6QUpCZ05WQkFvTQpBa2xVTVJFd0R3WURWUVFMREFoVFpXTjFjbWwwZVRFc01Db0dBMVVFQXd3alRHbHVkWGhsY21FZ1VtOXZkQ0JEClpYSjBhV1pwWTJGMFpTQkJkWFJvYjNKcGRIa3dnZ0lpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElDRHdBd2dnSUsKQW9JQ0FRQ3k4dkd1aDYrMjd4cXRzQU5KVU1JZUdhWC9yang1aElnaC9lT2N4WmMyL2F6VEIvekhud2paWDdxbgpDbzN6YVlaYVMzaWJPb3VTMXlQdjJHM05lUlB3ZkdIbjJrY1IzUU03aDRCZFl4WjNTUi9WaW9hV3BWeW1MQ20yCi9WMmdRV01XS3J0ZFlmT1hCdmlxaGhEOU9JeHJMU09xamFjOFQvaWNRY2ZOK2RLa3RLeUdsWTd2SkxLTzl3MngKSWRwT1RhMklEdVlwNUROUVY2dnk5c0RGZ2xQL2lhZnZjRGtMR1VocnNvcDhMZU5jZWpwbXBGQlBSd0pLWGdhbgo1c3ByeTZHZ0NwTk5KdUIvSHFndGgwZkdQak1FWThiUHVWT0NlaG5SeGUwOTRVMDFzR3JvYmtrYm5NK1N4dW1BCm9Md2sxLy9qQzFLM0hhS2prSU9NTUh4RXpxWXgwUTRSYWx2UFdoZDZvL0tQNUNzK3JkNStFd1NlRnV2YmFJckYKc0VQWkJQcEgwVURMUjB5aVFOazJqNExWYlYxeGRQN3RYOEt0VXZGOCtFM0dtNVN3bkNvZE5iZm5BVXhORjRSSwo0bERxR2liVVVJNUI1U25pSjVZTVZlVEpTYzFKbzlnVGFLYTlsUm5pTWl0WTlGanpqUWpERjR5R25oTlBtbUtHCnpJdlZPWEloUXBjdzNVaEVNbUR6NnAxd3Izd01EdGp1Zm9heGFUam9BdXhVelN3d0ZxeHp6Y0plblFpSG9GZVEKQjZjSjVSYXlpemFkbGtxQm5IQWtyekFCMGFNOVc4emg1QWhJY25PNmdmR0JhT0ZvbStJNUh1eTNUeVo5RmpUbgp2bHhWTTV0eFBWNVZzQlBNSzk2aEY2bW5XZUtOZy8yMnFZMFgrd284VDMzRzRMdldJd0lEQVFBQm8xTXdVVEFkCkJnTlZIUTRFRmdRVUQrYkZwTUFPaE5TcHRkUW8rTlpsZStZZDFMNHdId1lEVlIwakJCZ3dGb0FVRCtiRnBNQU8KaE5TcHRkUW8rTlpsZStZZDFMNHdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBZ0VBbUUyMWUySDUxdm9sRkkwQ2JvRGFrYjVUOVZMa0R6TGdteEgyaVpQQkpyblFCRmFQVEVhUW5NOTNwRHErCmN6ZmM3K1dKTCs2VFV5VVlGT2cycnVlSy9LV0MzQVFZVXJzYitpM0JETlpWdjc0ZjN3TGlkbXFFTGN5akhPOG0KN3lvR0lnZUc4a3NNWVBDelBmdXVGSFlORGl2MTFicm1iZGhkR0didlFNYmF5TFl2aEI1NDNKNXNUaVVzcjNpdgpTaEt2bXIva3JBYmRqNlpLMm02dXMrcEZrdGpqYmlySFZxajV0RStSdkVDOW9IU25neUNSQ0tKRXVFRHQrZ1VLCmdtU0ZoMStBRkpkaldxWXFuWDdrUHU2TjR4NEtvSDcyT1VrZDdOSHB6a0c1N1VNMGlWUThqQ0FjbGtaeHJwbmcKSENEK2RZMEpuSWxGK0xKN3FHZ21yTlFRdlRaMTFoV3lWN2ZSSGNDUHd1cVQwa0pDL3lqV1dYRWFmc01XVFBsNwoyenJRZzVZVzB6YmNXZlJ6bzF1Y3gwdGY0N3VuUmpWcWphWGp5eXprZ2tIcnFaSDkzOVNyQXk5ZTJTRlpVcWR5CnFJWHdHbVprdHpMOERVKzhaSDQ3UitDSXdjdjU5bDRXeTg4OWZVcmprNEtnZzQ1SWhxblA1Tk1nMlo4YXl0VUgKMFp3bzBpSnh1Q2UwdFFUZFNNdllDMFBvV3NFeVI0S1VMRVU4M0dmQ2JHWlFHOGhPRkFQSFhWMENwTTAyNSs5WQpMOElURlArTnc5TWVpdzRldHc1OUNUQVBDYzdsNFp2d3IxSzJaVEJtVkd4cnFkYXNpcXBJMHV0RzY5YUl0c1BpCis5VjhTU2RlN0Q1aU1WLzN6OUxEeEEvb0xvcU5HRmNEMFRTUjUrb2JlcUp6bDQwPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        pkiCertificateSubject:
+          email: team-a@linuxera.org
+    signedIdentity:
+      matchPolicy: MatchRepository`)
+
+func testExtendedTestdataImagepolicyPkiImagePolicyYamlBytes() ([]byte, error) {
+	return _testExtendedTestdataImagepolicyPkiImagePolicyYaml, nil
+}
+
+func testExtendedTestdataImagepolicyPkiImagePolicyYaml() (*asset, error) {
+	bytes, err := testExtendedTestdataImagepolicyPkiImagePolicyYamlBytes()
+	if err != nil {
+		return nil, err
+	}
+
+	info := bindataFileInfo{name: "test/extended/testdata/imagepolicy/pki-image-policy.yaml", size: 0, mode: os.FileMode(0), modTime: time.Unix(0, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -59032,8 +59132,11 @@ var _bindata = map[string]func() (*asset, error){
 	"test/extended/testdata/image_ecosystem/perl-hotdeploy/index.pl":                                         testExtendedTestdataImage_ecosystemPerlHotdeployIndexPl,
 	"test/extended/testdata/image_ecosystem/perl-hotdeploy/lib/My/Test.pm":                                   testExtendedTestdataImage_ecosystemPerlHotdeployLibMyTestPm,
 	"test/extended/testdata/image_ecosystem/perl-hotdeploy/perl.json":                                        testExtendedTestdataImage_ecosystemPerlHotdeployPerlJson,
+	"test/extended/testdata/imagepolicy/invalid-pki-image-policy.yaml":                                       testExtendedTestdataImagepolicyInvalidPkiImagePolicyYaml,
 	"test/extended/testdata/imagepolicy/invalid-public-key-cluster-image-policy.yaml":                        testExtendedTestdataImagepolicyInvalidPublicKeyClusterImagePolicyYaml,
 	"test/extended/testdata/imagepolicy/invalid-public-key-image-policy.yaml":                                testExtendedTestdataImagepolicyInvalidPublicKeyImagePolicyYaml,
+	"test/extended/testdata/imagepolicy/pki-cluster-image-policy.yaml":                                       testExtendedTestdataImagepolicyPkiClusterImagePolicyYaml,
+	"test/extended/testdata/imagepolicy/pki-image-policy.yaml":                                               testExtendedTestdataImagepolicyPkiImagePolicyYaml,
 	"test/extended/testdata/imagepolicy/public-key-rekor-cluster-image-policy.yaml":                          testExtendedTestdataImagepolicyPublicKeyRekorClusterImagePolicyYaml,
 	"test/extended/testdata/imagepolicy/public-key-rekor-image-policy.yaml":                                  testExtendedTestdataImagepolicyPublicKeyRekorImagePolicyYaml,
 	"test/extended/testdata/ipsec/nmstate.yaml":                                                              testExtendedTestdataIpsecNmstateYaml,
@@ -59793,8 +59896,11 @@ var _bintree = &bintree{nil, map[string]*bintree{
 					}},
 				}},
 				"imagepolicy": {nil, map[string]*bintree{
+					"invalid-pki-image-policy.yaml":                {testExtendedTestdataImagepolicyInvalidPkiImagePolicyYaml, map[string]*bintree{}},
 					"invalid-public-key-cluster-image-policy.yaml": {testExtendedTestdataImagepolicyInvalidPublicKeyClusterImagePolicyYaml, map[string]*bintree{}},
 					"invalid-public-key-image-policy.yaml":         {testExtendedTestdataImagepolicyInvalidPublicKeyImagePolicyYaml, map[string]*bintree{}},
+					"pki-cluster-image-policy.yaml":                {testExtendedTestdataImagepolicyPkiClusterImagePolicyYaml, map[string]*bintree{}},
+					"pki-image-policy.yaml":                        {testExtendedTestdataImagepolicyPkiImagePolicyYaml, map[string]*bintree{}},
 					"public-key-rekor-cluster-image-policy.yaml":   {testExtendedTestdataImagepolicyPublicKeyRekorClusterImagePolicyYaml, map[string]*bintree{}},
 					"public-key-rekor-image-policy.yaml":           {testExtendedTestdataImagepolicyPublicKeyRekorImagePolicyYaml, map[string]*bintree{}},
 				}},
